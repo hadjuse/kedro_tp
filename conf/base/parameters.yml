@@ -1,0 +1,5 @@
+test_ratio: 0.3
+automl_max_evals: 10
+gcp_project_id: "arboreal-totem-444713-e9"
+gcs_bucket_name: "bucket_s3_hadj_kedro"
+gcs_primary_folder: "primary/primary/"
