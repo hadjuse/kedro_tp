@@ -1,9 +1,16 @@
-"""
-This is a boilerplate test file for pipeline 'purchase_predict'
-generated using Kedro 1.2.0.
-Please add your pipeline tests here.
+from kedro.runner import SequentialRunner
+from project_mlops.pipelines.purchase_predict.pipeline import create_pipeline
 
-Kedro recommends using `pytest` framework, more info about it can be found
-in the official documentation:
-https://docs.pytest.org/en/latest/getting-started.html
-"""
+
+def test_pipeline(catalog_test):
+    runner = SequentialRunner()
+    pipeline = create_pipeline()
+    pipeline_output = runner.run(pipeline, catalog_test)
+    # Load data from MemoryDataset objects
+    X_train = pipeline_output["X_train"].load()
+    y_train = pipeline_output["y_train"].load()
+    X_test = pipeline_output["X_test"].load()
+    y_test = pipeline_output["y_test"].load()
+
+    assert X_train.shape[0] == y_train.shape[0]
+    assert X_test.shape[0] == y_test.shape[0]

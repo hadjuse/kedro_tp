@@ -7,7 +7,11 @@ def create_pipeline(**kwargs):
         [
             Node(
                 load_csv_from_bucket,
-                ["params:gcp_project_id", "params:gcs_bucket_name", "params:gcs_primary_folder"],
+                [
+                    "params:gcp_project_id",
+                    "params:gcs_bucket_name",
+                    "params:gcs_primary_folder",
+                ],
                 "primary",
             )
         ]
