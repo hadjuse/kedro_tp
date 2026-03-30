@@ -26,7 +26,7 @@ def test_ratio():
 
 @pytest.fixture(scope="module")
 def dataset_encoded(dataset_not_encoded):
-    return encode_features(dataset_not_encoded)["features"]
+    return encode_features(dataset_not_encoded)
 
 
 @pytest.fixture(scope="module")

@@ -22,7 +22,10 @@ def encode_features(
         transform_pipeline[label] = encoder
 
     features["weekday"] = features["weekday"].astype(int)
-    return dict(features=features, transform_pipeline=transform_pipeline)
+    return {"features": features, "transform_pipeline": transform_pipeline}
+
+
+# On a rajouté la transform pipeline
 
 
 def split_dataset(dataset: pd.DataFrame, test_ratio: float) -> dict[str, pd.DataFrame]:

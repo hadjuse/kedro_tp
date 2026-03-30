@@ -1,17 +1,17 @@
-from kedro.pipeline import Pipeline, Node
+from kedro.pipeline import Pipeline, node
 
 from .nodes import encode_features, split_dataset
 
 
-def create_pipeline(**kwargs) -> Pipeline:
+def create_pipeline(**kwargs):
     return Pipeline(
         [
-            Node(
+            node(
                 encode_features,
                 "primary",
                 dict(features="dataset", transform_pipeline="transform_pipeline"),
             ),
-            Node(
+            node(
                 split_dataset,
                 ["dataset", "params:test_ratio"],
                 dict(
