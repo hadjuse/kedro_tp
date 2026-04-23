@@ -4,7 +4,7 @@ from project_mlops.pipelines.purchase_predict.nodes import (
 from sklearn.preprocessing import LabelEncoder
 import pandas as pd
 
-BALANCE_THRESHOLD = 0.1
+BALANCE_THRESHOLD = 0.05
 MIN_SAMPLES = 5000
 
 
