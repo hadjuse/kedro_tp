@@ -13,9 +13,13 @@ steps:
         gsutil cp gs://votre-bucket-cache/cache.tar.gz /tmp/cache.tar.gz || exit 0
         tar -xzf /tmp/cache.tar.gz -C / || exit 0
 
-  - name: "ghcr.io/astral-sh/uv:python3.12-trixie-slim"
     id: CI
-    # ... le reste de votre étape CI ...
+    entrypoint: /bin/sh
+    args:
+      - "-c"
+      - "chmod a+x install.sh && ./install.sh && uv sync && uv run pytest ."
+    env:
+      - "UV_CACHE_DIR=/root/.cache/uv"
     waitFor: ["unpack-cache"]
 
 
