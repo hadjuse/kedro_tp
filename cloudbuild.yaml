@@ -4,15 +4,20 @@ options:
 substitutions:
   _GITHUB_REPOSITORY: "hadjuse/kedro_tp.git" # Répertoire git sans github.com
 steps:
+  - name: gcr.io/cloud-builders/gsutil
+    id: unpack-cache
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        gsutil cp gs://votre-bucket-cache/cache.tar.gz /tmp/cache.tar.gz || exit 0
+        tar -xzf /tmp/cache.tar.gz -C / || exit 0
+
   - name: "ghcr.io/astral-sh/uv:python3.12-trixie-slim"
     id: CI
-    entrypoint: /bin/sh
-    args:
-      - "-c"
-      - "chmod a+x install.sh && ./install.sh && uv sync && uv run pytest ."
-    env:
-      - "UV_CACHE_DIR=/root/.cache/uv"
+    # ... le reste de votre étape CI ...
     waitFor: ["unpack-cache"]
+
 
   - name: "ghcr.io/astral-sh/uv:python3.12-trixie-slim"
     id: CD
