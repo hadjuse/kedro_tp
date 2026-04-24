@@ -44,11 +44,11 @@ steps:
     args:
       - "-c"
       - |
-        # On n'affiche pas le token, mais on voit si le clone échoue
-        git clone --branch $BRANCH_NAME https://$$GITHUB_FGT_API@github.com/$_GITHUB_REPOSITORY /tmp/purchase_predict_api || { echo "Le clone a échoué"; exit 1; }
+        git clone --branch $BRANCH_NAME https://x-access-token:$$GITHUB_FGT_API@github.com/$_GITHUB_REPOSITORY /tmp/purchase_predict_api
         cd /tmp/purchase_predict_api
-        gcloud builds submit ...
-
+        gcloud builds submit \
+          --config /tmp/purchase_predict_api/cloudbuild.yaml /tmp/purchase_predict_api \
+          --substitutions=SHORT_SHA=$SHORT_SHA
     waitFor: ["CD"]
 
 logs_bucket: gs://logs_purchase_predict/logs_build_cloud_build
