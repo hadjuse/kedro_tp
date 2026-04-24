@@ -50,8 +50,7 @@ steps:
         
         gcloud builds submit \
           --config /tmp/purchase_predict_api/cloudbuild.yaml \
-          --substitutions=SHORT_SHA=$SHORT_SHA,_MLFLOW_SERVER=$_MLFLOW_SERVER \
-          .
+          --substitutions=SHORT_SHA=$SHORT_SHA,_MLFLOW_SERVER=$_MLFLOW_SERVER
     waitFor: ["CD"]
 
 
