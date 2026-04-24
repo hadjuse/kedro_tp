@@ -38,7 +38,7 @@ steps:
         touch conf/local/.gitkeep
         
         # Correction : On utilise _BRANCH_NAME (nom de substitution standard)
-        FINAL_BRANCH=$${BRANCH_NAME:-$_BRANCH_NAME}
+        FINAL_BRANCH=${BRANCH_NAME:-$_BRANCH_NAME}
         
         # Correction : Utilisation de $ simple (pas $$) pour la variable locale au script
         chmod a+x install.sh && ./install.sh && ENV=$FINAL_BRANCH uv run kedro run
@@ -67,7 +67,7 @@ steps:
         # Correction : On passe explicitement _BRANCH_NAME au build suivant
         gcloud builds submit \
           --config /tmp/purchase_predict_api/cloudbuild.yaml \
-          --substitutions=SHORT_SHA=$SHORT_SHA,_MLFLOW_SERVER=$_MLFLOW_SERVER,_BRANCH_NAME=$FINAL_BRANCH
+          --substitutions=SHORT_SHA=$SHORT_SHA,_MLFLOW_SERVER=$_MLFLOW_SERVER,_BRANCH_NAME=$$FINAL_BRANCH
     waitFor: ["CD"]
 
 logs_bucket: gs://logs_purchase_predict/logs_build_cloud_build
