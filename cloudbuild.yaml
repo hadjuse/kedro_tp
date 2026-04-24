@@ -48,6 +48,7 @@ steps:
     args:
       - "-c"
       - |
+        mkdir -p conf/local
         # On utilise la même logique pour le clone Git
         FINAL_BRANCH=${BRANCH_NAME:-$_BRANCH_NAME}
         git clone --branch $$FINAL_BRANCH https://x-access-token:$$GITHUB_FGT_API@github.com/$_GITHUB_REPOSITORY /tmp/purchase_predict_api || { echo "Le clone a échoué"; exit 1; }
