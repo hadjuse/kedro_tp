@@ -38,7 +38,7 @@ steps:
         touch conf/local/.gitkeep
         
         # Correction : On utilise _BRANCH_NAME (nom de substitution standard)
-        FINAL_BRANCH=${BRANCH_NAME:-$_BRANCH_NAME}
+        FINAL_BRANCH=$${BRANCH_NAME:-$_BRANCH_NAME}
         
         # Correction : Utilisation de $ simple (pas $$) pour la variable locale au script
         chmod a+x install.sh && ./install.sh && ENV=$FINAL_BRANCH uv run kedro run
