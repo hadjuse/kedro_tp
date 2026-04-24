@@ -55,5 +55,5 @@ logs_bucket: gs://logs_purchase_predict/logs_build_cloud_build
 timeout: 1200s
 availableSecrets:
   secretManager:
-    - versionName: projects/$PROJECT_ID/secrets/github_connect-github-oauthtoken-b56839/versions/latest
+    - versionName: projects/$PROJECT_ID/secrets/api-vm-gcp/versions/latest
       env: GITHUB_FGT_API
