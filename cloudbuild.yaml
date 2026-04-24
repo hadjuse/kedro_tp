@@ -13,7 +13,7 @@ steps:
     args:
       - '-c'
       - |
-        gsutil cp gs://votre-bucket-cache/cache.tar.gz /tmp/cache.tar.gz || exit 0
+        gsutil cp gs://cache_purchase/cache.tar.gz /tmp/cache.tar.gz || exit 0
         tar -xzf /tmp/cache.tar.gz -C / || exit 0
 
   - name: "ghcr.io/astral-sh/uv:python3.12-trixie-slim"
