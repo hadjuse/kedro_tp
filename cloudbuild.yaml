@@ -3,7 +3,7 @@ options:
 # Variables
 substitutions:
   _GITHUB_REPOSITORY: "hadjuse/kedro_tp.git" # Répertoire git sans github.com
-  BRANCH_NAME: "staging"
+  _BRANCH_NAME: "staging"
 steps:
   - name: gcr.io/cloud-builders/gsutil
     id: unpack-cache
