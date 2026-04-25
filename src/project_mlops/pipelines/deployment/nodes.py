@@ -32,7 +32,7 @@ def stage_model(registry_name: str, version: str) -> None:
     Use model URI: models://registry_name@staging for deployments.
     """
     env = os.getenv("ENV")
-    if env is None:
+    if not env:
         return
 
     alias = env  # 'staging' or 'production' as alias name

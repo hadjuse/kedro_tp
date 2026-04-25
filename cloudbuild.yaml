@@ -26,6 +26,7 @@ steps:
       - "MLFLOW_SERVER=$_MLFLOW_SERVER"
       - "DO_NOT_TRACK=1"
       - "UV_CACHE_DIR=/root/.cache/uv"
+      - "ENV=${BRANCH_NAME:-staging}"
     waitFor: ["CI"]
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     id: API Deploy
