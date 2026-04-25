@@ -3,7 +3,7 @@ options:
 # Variables
 substitutions:
   _GITHUB_REPOSITORY: "hadjuse/kedro_tp.git" # Répertoire git sans github.com
-  $_MLFLOW_SERVER: "http://34.136.112.255"
+  _MLFLOW_SERVER: "http://34.136.112.255"
 steps:
   - name: "ghcr.io/astral-sh/uv:python3.12-trixie-slim"
     id: CI
@@ -39,7 +39,7 @@ steps:
         cd /tmp/purchase_predict_api
         gcloud builds submit \
           --config /tmp/purchase_predict_api/cloudbuild.yaml /tmp/purchase_predict_api \
-          --substitutions=SHORT_SHA=$SHORT_SHA,MLFLOW_SERVER=$_MLFLOW_SERVER
+          --substitutions=SHORT_SHA=$SHORT_SHA,_MLFLOW_SERVER=$_MLFLOW_SERVER
     waitFor: ["CD"]
 
 logs_bucket: gs://logs_purchase_predict/logs_build_cloud_build
